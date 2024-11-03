@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router()
 
 //conrollers
-const { create, list, remove, read, update, listBy } = require('../controllers/product')
+const { create, list, remove, read, update, listBy, searchFilters } = require('../controllers/product')
 
 //middleware
 const { auth, adminCheck } = require('../middleware/auth')
@@ -24,4 +24,9 @@ router.get('/products/:id', read);
 router.put('/product/:id', auth, adminCheck, update);
 
 router.post("/productby", listBy);
+
+// Search
+//@Endpoint http://localhost:5000/api/search/filters
+router.post('/search/filters',searchFilters)
+
 module.exports = router;

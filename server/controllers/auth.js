@@ -1,7 +1,6 @@
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
 const jwt = require('jsonwebtoken');
-const { token } = require('morgan');
 
 exports.register = async (req, res) => {
     try {
@@ -35,7 +34,7 @@ exports.login = async (req, res) => {
             // เช็ค password
             const isMatch = await bcrypt.compare(password,user.password)
             if(!isMatch){
-                return res.status(400).send('Password Invalid!!')
+                return res.status(400).send('Username or Password Invalid!!!')
             }
             //Payload ส่งรหัสไปสร้างเป็น Token
             const payload = {
@@ -45,13 +44,13 @@ exports.login = async (req, res) => {
                 }
             }
             //Generate Token สร้างเป็น Token
-            jwt.sign(payload, 'jwtSecret',{expiresIn: 3600 },//กำหนดเวลาหมดอายุเป็นวิ
+            jwt.sign(payload, 'jwtSecret',{expiresIn: 3600 },//กำหนดเวลาหมดอายุเป็นวิ 1 ชม.
                 (err,token)=>{
                     if(err) throw err; //ให้โยน err ออกมา
                     res.json({token,payload})
             });
         }else{
-            return res.status(400).send('User on found!!!');
+            return res.status(400).send('Username or Password Invalid!!!');
         }
     } catch (err) {
         console.log(err)

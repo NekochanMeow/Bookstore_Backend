@@ -8,9 +8,15 @@ const ProductSchema = new mongoose.Schema(
     },
     title: {
         type: String,
+        text: true
     },
     author: {
         type: String,
+        text: true
+    },
+    publisher: {
+        type: String,
+        text: true
     },
     price: {
         type: Number,
@@ -27,7 +33,7 @@ const ProductSchema = new mongoose.Schema(
     },
     category: {
         type: ObjectId,
-        ref: "category"
+        ref: "category",
     },
     images: {
         type: Array,

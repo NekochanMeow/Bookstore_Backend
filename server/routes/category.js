@@ -8,7 +8,7 @@ const { list, create, read, update, remove } = require('../controllers/category'
 const { auth, adminCheck } = require('../middleware/auth')
 
 //@Endpoint http://localhost:5000/api/category
-router.get('/category',auth, adminCheck,list );
+router.get('/category',list );
 
 //@Endpoint http://localhost:5000/api/category
 router.post('/category',auth, adminCheck,create);

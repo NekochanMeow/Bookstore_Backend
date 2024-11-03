@@ -9,7 +9,7 @@ exports.auth = (req, res, next) => {
       }
       const decoded = jwt.verify(token, "jwtSecret");
   
-      console.log("middleware", decoded);
+      console.log("middleware", decoded); //ถอนรหัส
       req.user  = decoded.user
       next()
     } catch (err) {

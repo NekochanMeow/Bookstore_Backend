@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Schema
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -14,8 +15,22 @@ const UserSchema = new mongoose.Schema({
     enabled: {
         type: Boolean,
         default: false
-    }
-},
-    { timestamps: true }
-);
-module.exports = User = mongoose.model('users',UserSchema)
+    },
+    address: {
+        firstName: { type: String },
+        lastName: { type: String },
+        country: { type: String },
+        address: { type: String },
+        district: { type: String },
+        city: { type: String },
+        province: { type: String },
+        postalCode: { type: String },
+        phone: { type: String },
+    },
+    wishlist:[{
+        type: ObjectId,
+        ref: 'product'
+    }]
+}, { timestamps: true });
+
+module.exports = User = mongoose.model('users', UserSchema);
